@@ -18,7 +18,7 @@ model Credential {
   password            String
   website             String?
   notes               String?
-  passwordPlaceholder String @default("••••••••••")
+  passwordPlaceholder String   @default("••••••••••")
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }

@@ -221,19 +221,13 @@ export default function CredentialForm({
                 website: website.trim(),
                 notes: notes.trim(),
                 passwordPlaceholder: "•".repeat(Math.min(password.length, 12)),
-                updatedAt: new Date().toISOString()
             };
 
             if (isEditing) {
                 updateCredential(credential.id, credentialData);
-                AppToast.update.success(`${service} has been updated`);
             } else {
-                const newCredential = {
-                    id: Date.now().toString(),
-                    createdAt: new Date().toISOString(),
-                    ...credentialData
-                };
-                addCredential(newCredential);
+                
+                addCredential(credentialData);
                 // AppToast.add.success(`${service} has been updated`);
             }
 
