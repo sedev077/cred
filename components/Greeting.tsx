@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { getTimeOfDay } from "@/utils/getTimeOfDay";
+import { getTimeOfTheDay } from "@/utils/getTimeOfTheDay";
 
 const Greeting = () => {
-    return <Text style={styles.greeting}>Good {getTimeOfDay()}</Text>;
+    return <Text style={styles.greeting}>Good {getTimeOfTheDay()}</Text>;
 };
 
 const styles = StyleSheet.create({

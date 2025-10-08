@@ -1,25 +1,16 @@
 import Header from "../components/Header";
 import CredentialList from "../components/CredentialList";
-import Credentials from "../components/Credentials";
-// screens/HomeScreen.tsx
 import FAB from "../components/FAB";
 import CredentialForm from "../components/CredentialForm";
-import { resetStorage } from "../utils/resetStorage";
 import React, { useState, useEffect } from "react";
 import { getSecureItem, deleteSecureItem } from "@/utils/secureStorage";
 import {
-    Text,
-    View,
     StyleSheet,
     SafeAreaView,
     StatusBar,
-    TextInput,
-    TouchableOpacity,
     Animated
 } from "react-native";
 import { useCredentialStore } from "../hooks/useCredentialStore";
-import Toast from "react-native-toast-message";
-import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
     const { credentials, loadCredentials } = useCredentialStore();
@@ -47,7 +38,7 @@ export default function HomeScreen() {
     useEffect(() => {
         // resetStorage('credentials')
         // One-time migration function
-        clearAllIndividualCredentials();
+        // clearAllIndividualCredentials();
         // migrateCredentials();
         loadCredentials();
     }, []);

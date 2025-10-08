@@ -62,7 +62,7 @@ export default function CredentialForm({
     useEffect(() => {
         if (credential) {
             setService(credential.service || "");
-            setUsername(credential.username || credential.email || "");
+            setUsername(credential.username ||  "");
             setPassword(credential.password || "");
             setWebsite(credential.website || "");
             setNotes(credential.notes || "");
@@ -220,15 +220,16 @@ export default function CredentialForm({
                 password: password,
                 website: website.trim(),
                 notes: notes.trim(),
-                passwordPlaceholder: "•".repeat(Math.min(password.length, 12)),
+                // passwordPlaceholder: "•".repeat(Math.min(password.length, 12)),
             };
 
             if (isEditing) {
-                updateCredential(credential.id, credentialData);
+                updateCredential(credential.id, {
+                    updatedAt: new Date().toISOString(),
+                    ...credentialData});
             } else {
                 
                 addCredential(credentialData);
-                // AppToast.add.success(`${service} has been updated`);
             }
 
             handleClose();
@@ -331,7 +332,7 @@ export default function CredentialForm({
                             disabled={isLoading}
                         >
                             <Text style={styles.saveButtonText}>
-                                {isLoading ? "Saving..." : "Save"}
+                                {isLoading ? (isEditing ? "Updating..." : "Saving...") : (isEditing ? "Update" : "Save")}
                             </Text>
                         </TouchableOpacity>
                     </View>

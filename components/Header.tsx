@@ -7,6 +7,8 @@ import {
     TouchableOpacity,
     StyleSheet
 } from "react-native";
+import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 const Header = () => {
     const [scrollY] = useState(new Animated.Value(0));

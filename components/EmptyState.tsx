@@ -1,28 +1,14 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Animated, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const EmptyState = () => {
-    const [modalVisible, setModalVisible] = useState(false);
-    const [selectedCredential, setSelectedCredential] = useState<any | null>(
-        null
-    );
+type EmptyStateProps = {
+    onAdd: () => void;
+};
+
+const EmptyState = ({ onAdd }: EmptyStateProps) => {
     const [scrollY] = useState(new Animated.Value(0));
-
-    const handleAddNew = () => {
-        setModalVisible(true);
-    };
-
-    const handleClose = () => {
-        setModalVisible(false);
-        setSelectedCredential(null);
-    };
-
-    const handleEdit = (item: any) => {
-        setSelectedCredential(item);
-        setModalVisible(true);
-    };
-
+    
     return (
         <View style={styles.emptyContainer}>
             <View style={styles.emptyIconContainer}>
@@ -33,7 +19,7 @@ const EmptyState = () => {
                 Add your first credential to get started with secure password
                 management
             </Text>
-            <TouchableOpacity style={styles.emptyButton} onPress={handleAddNew}>
+            <TouchableOpacity style={styles.emptyButton} onPress={onAdd}>
                 <Ionicons name="add" size={20} color="#fff" />
                 <Text style={styles.emptyButtonText}>Add First Credential</Text>
             </TouchableOpacity>
@@ -100,3 +86,4 @@ const styles = StyleSheet.create({
 });
 
 export default EmptyState;
+

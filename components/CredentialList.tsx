@@ -1,18 +1,18 @@
-import LoadingScreen from "./LoadingScreen";
 import EmptyState from "./EmptyState";
-import React from "react";
-import { StyleSheet, FlatList, Animated } from "react-native";
-import { useCredentialStore } from "@/hooks/CredentialList";
+import React, { useState } from "react";
+import { StyleSheet, Animated } from "react-native";
+import { useCredentialStore } from "@/hooks/useCredentialStore";
 import CredentialCard from "./CredentialCard";
+import CredentialListSkeleton from "./CredentialListSkeleton";
 
 type CredentialListProps = {
     data: any;
-    editFn: () => void;
+    editFn: (item: any) => any;
     addFn: () => void;
 };
 
 const CredentialList = ({
-    credentials,
+    data,
     editFn,
     addFn
 }: CredentialListProps) => {
@@ -20,7 +20,7 @@ const CredentialList = ({
     const [scrollY] = useState(new Animated.Value(0));
 
     if (!isHydrated) {
-        return <LoadingScreen />;
+        return <CredentialListSkeleton />;
     }
 
     return (
@@ -32,7 +32,7 @@ const CredentialList = ({
             )}
             ListEmptyComponent={<EmptyState onAdd={addFn} />}
             contentContainerStyle={
-                credentials.length === 0
+                data.length === 0
                     ? styles.emptyContentContainer
                     : styles.contentContainer
             }
